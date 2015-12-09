@@ -99,7 +99,7 @@
             <id>test</id>
             <properties>
                 <org>pdani</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
-                <options>pdani</options> <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
+                <options>wiechma</options> <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
                 <apigee.profile>test</apigee.profile>
                 <apigee.env>test</apigee.env>
                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
@@ -115,8 +115,8 @@
         <profile>
             <id>prod</id>
             <properties>
-                <org>pdani</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
-                <options>pdani</options> <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
+                <org>wiechma</org>  <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
+                <options>wiechma</options> <!-- default org, replace with dafault org to avoid passing parameter e.g. -Dorg testmyapi -->
                 <apigee.profile>prod</apigee.profile>
                 <apigee.env>prod</apigee.env>
                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
