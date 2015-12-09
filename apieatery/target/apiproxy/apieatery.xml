@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="17" name="apieatery">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1449688787395</CreatedAt>
+    <CreatedBy>kevin.s.wiechmann@gmail.com</CreatedBy>
+    <Description>Get food truck ratings.</Description>
+    <DisplayName>apieatery</DisplayName>
+    <LastModifiedAt>1449688787395</LastModifiedAt>
+    <LastModifiedBy>kevin.s.wiechmann@gmail.com</LastModifiedBy>
+    <Policies>
+        <Policy>Assign-Message-Ratings</Policy>
+        <Policy>Assign-Message-Trucks-detail</Policy>
+        <Policy>Basic-Authentication-Credentials</Policy>
+        <Policy>Dynamic-Routing</Policy>
+        <Policy>Extract-Variables-Ratings</Policy>
+        <Policy>Extract-Variables-Truck-Name</Policy>
+        <Policy>Key-Value-Map-Operations-Credentials</Policy>
+        <Policy>OAuth-v20-token</Policy>
+        <Policy>Response-Cache-30-seconds</Policy>
+        <Policy>Service-Callout-Ratings</Policy>
+        <Policy>Spike-Arrest-Violation</Policy>
+        <Policy>Spike-Arrest</Policy>
+        <Policy>Verify-API-Key-Ratings</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://dynamic-routing.js</Resource>
+    </Resources>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>baasTarget</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

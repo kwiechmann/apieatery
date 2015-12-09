@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="SpikeArrestViolation">
+            <Step>
+                <Condition>fault.name == "SpikeArrestViolation"</Condition>
+                <Name>Spike-Arrest-Violation</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Spike-Arrest</Name>
+            </Step>
+            <Step>
+                <Name>Spike-Arrest-Violation</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>Assign-Message-Trucks-detail</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <Flows>
+        <Flow name="/ratings">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Verify-API-Key-Ratings</Name>
+                </Step>
+                <Step>
+                    <Name>Response-Cache-30-seconds</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Response-Cache-30-seconds</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-Variables-Ratings</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Message-Ratings</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/ratings") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="/chefs">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/chefs") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="/token">
+            <Description>/token</Description>
+            <Request>
+                <Step>
+                    <Name>OAuth-v20-token</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="/trucks">
+            <Description>/trucks description</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/trucks") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="/trucks detail">
+            <Description>/trucks/detail description</Description>
+            <Request>
+                <Step>
+                    <Name>Extract-Variables-Truck-Name</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Ratings</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/trucks/{truckname}") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/v0/apieatery</BasePath>
+        <!-- <VirtualHost>default</VirtualHost> -->
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoTarget">
+        <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+    </RouteRule>
+    <RouteRule name="baasTarget">
+        <Condition/>
+        <Condition>(proxy.pathsuffix MatchesPath "/ratings") and (request.verb = "GET")</Condition>
+        <TargetEndpoint>baasTarget</TargetEndpoint>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
