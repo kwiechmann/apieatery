@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-Ratings">
+    <DisplayName>Assign Message - Ratings</DisplayName>
+    <Set>
+        <Payload contentType="application/json">
+            \{"application":"{application}", "comment":"{comment}", "commenter":"{commenter}"}
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

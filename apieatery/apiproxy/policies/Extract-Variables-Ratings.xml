@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Variables-Ratings">
+    <DisplayName>Extract Variables - Ratings</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="application">
+            <JSONPath>$.application</JSONPath>
+        </Variable>
+        <Variable name="comment">
+            <JSONPath>$.entities[0].comment</JSONPath>
+        </Variable>
+        <Variable name="commenter">
+            <JSONPath>$.entities[0].commenter</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>
